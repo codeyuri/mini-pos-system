@@ -15,7 +15,7 @@ const CustomerItem = ({itemName, item}) => {
                     piece + 
                     ' x ₱ ' + 
                     item.itemPrice + 
-                    '| ₱ ' + 
+                    ' | ₱ ' + 
                     cashComma(item.itemPrice * item.itemSold)
                 ) : '- -'
             }
