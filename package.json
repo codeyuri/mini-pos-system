@@ -1,5 +1,6 @@
 {
   "name": "mini-pos-system",
+  "homepage": "https://codeyuri.github.io/pos",
   "version": "1.0.0",
   "description": "Mini POS System - Dan React Redux Hooks practice",
   "main": "index.js",
@@ -10,7 +11,6 @@
   "keywords": [],
   "author": "Dan Quesada III",
   "license": "ISC",
-  "homepage": "https://codeyuri.github.io/pos/",
   "dependencies": {
     "axios": "^0.19.2",
     "jquery": "^3.5.0",

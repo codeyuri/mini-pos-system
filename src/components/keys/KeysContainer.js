@@ -105,13 +105,13 @@ const KeysContainer = ({cake, pizza, iceCream, burger}) => {
                 ) : menuButton.buyIceCreamButton ? (
                     <button onClick={(e) => handleSubmit(buyIceCream, iceCream.itemQuantity, e)}>Buy {number} { number > 1 ? 'Ice Creams' : 'Ice Cream' }</button>
                 ) : (
-                    <button onClick={(e) => handleSelect(e)}>Buy Item</button>
+                    <button onClick={(e) => handleSelect(e)} className="default_btn">Buy Item</button>
                 )}
                 <p className="errorText" id="errortext">
                     { numNull ? <span>Please input something!</span> : null }
                     { stock ? <span>Out of stock!</span> : null }
                     { over ? <span>Stock not enough!</span> : null }
-                    { select ? <span>Please select an item!</span> : null }
+                    { select ? <span>Select an item from the menu!</span> : null }
                 </p>
             </form>
         </div>
