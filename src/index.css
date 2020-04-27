@@ -19,7 +19,7 @@ h2 { margin-bottom: 10px; }
 .customer_cart p { display: flex; justify-content: space-between; }
 .customer_cart p.add_border { position: relative; padding-top: 10px; margin-top: 10px; }
 .customer_cart p.add_border::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; border-top: 1px dotted #fff; }
-.customer_cart p span { color: #fff }
+.customer_cart p span { color: #fff; padding-left: 15px; }
 .customer_cart figure { position: relative; overflow: hidden; width: 100%; border-bottom: 2px dotted #fff }
 .customer_cart img { width: 100px; margin-left: -110px; margin-bottom: -5px; display: block; animation: 5s walk infinite linear; filter: invert(100) }
 .add_to_cart { font-size: 14px; background: #038683; font-weight: normal; padding: 6px 15px; cursor: pointer; }
@@ -43,7 +43,11 @@ h2 { margin-bottom: 10px; }
 .bot_con { display: flex; justify-content: space-between; flex-wrap: wrap; }
 /* bot menu */
 .menu { width: 55%; }
-.menu ul { list-style: none; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+.menu a.active span.menu { text-decoration: none; margin-left: -15px; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.menu a span.menu { font-size: 24px; font-weight: bold; color: #fff; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.menu a.active small { opacity: 0; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.menu a small { opacity: 1; color: #fff; font-size: 20px; position: relative; bottom: 3px; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.menu ul { margin-top: 10px; list-style: none; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
 .menu ul li { width: 49%; text-align: center; background: rgba(255,255,255,0.3); margin: 4px 0; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 3px 13px rgba(3, 135, 131, 0.3); }
 .menu ul li:hover { background: #58d2ba; -webkit-transition: all .3s linear; transition: all .3s linear; cursor: pointer; }
 .menu ul li a.active { background: linear-gradient(to top, #0aa, #1abc9c); -webkit-transition: all .3s linear; transition: all .3s linear; cursor: pointer }
@@ -58,7 +62,8 @@ h2 { margin-bottom: 10px; }
 .bot_right { width: 36%; display: flex; flex-direction: column; justify-content: space-between; }
 .bot_right button { display: block; width: 100%; border: 0; padding: 10px; background: #038683; color: #fff; margin: 5px 0 10px; word-break: break-word; max-width: 100%; }
 .bot_right button:hover { background: #444; cursor: pointer; -webkit-transition: all .3s linear; transition: all .3s linear; }
-.bot_right .item_summary p { margin-bottom: 10px; display: flex; justify-content: space-between; }
+.bot_right .item_summary p, .bot_right .item_summary h3 { margin-bottom: 10px; display: flex; justify-content: space-between; }
+.bot_right .item_summary p span, .bot_right .item_summary h3 span { padding-left: 15px; }
 .bot_right ul.notice { list-style: none; }
 .bot_right ul.notice ul { padding: 15px 0 0 15px; }
 .all_earnings { margin-top: 25px; padding-top: 20px; border-top: 1px dotted #fff; }
@@ -80,21 +85,19 @@ footer p { text-align: center; font-size: 14px; }
     #app { height: auto; padding-bottom: 25px; }
 }
 @media only screen and (max-width: 800px) {
+    .store { padding: 50px 30px }
     .menu ul li a { padding: 15px; }
     .keypad table td { padding: 10px; }
+    .bot_right .item_summary h3 { flex-direction: column; }
+    .bot_right .item_summary h3 span { padding-left: 0; }
 }
 @media only screen and (max-width: 700px) {
     .errorText { font-size: 13px; }
 }
 @media only screen and (max-width: 600px) {
     #app { height: auto; padding-bottom: 15px;}
-    .store { position: relative; left: 0; top: 0; transform: none; padding: 30px; }
+    .store { height: auto; position: relative; left: 0; top: 0; transform: none; padding: 30px; }
     .add_to_cart { padding: 6px }
-    .errorText { font-size: 12px; }
-    footer { margin-top: 0; padding: 15px 10px }
-}
-@media only screen and (max-width: 500px) {
-    .store { height: auto; }
     .top_con { padding-bottom: 15px; flex-wrap: wrap; }
     .customer { width: 100%; }
     .customer_cart { min-height: 0; }
@@ -102,4 +105,7 @@ footer p { text-align: center; font-size: 14px; }
     .errorText { font-size: 15px; }
     .menu { width: 100%; }
     .bot_right { width: 100%; margin: 20px 0; }
+    .bot_right .item_summary h3 { flex-direction: row; }
+    .bot_right .item_summary h3 span { padding-left: 15px; }
+    footer { margin-top: 0; padding: 15px 10px }
 }

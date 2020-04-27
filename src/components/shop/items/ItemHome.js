@@ -10,7 +10,6 @@ const ItemHome = () => {
                         <li>View the selected item's summary</li>
                         <li>Reset the selected item's stock</li>
                         <li>Buy a selected item</li>
-                        <li>Deselect item</li>
                     </ul>
                 </li>
             </ul>

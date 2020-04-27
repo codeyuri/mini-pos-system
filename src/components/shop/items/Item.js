@@ -47,14 +47,16 @@ const Item = ({item, itemName, initQuantity}) => {
                 <p>Price of 1 { itemName }: <span>₱ { item.itemPrice }</span></p>
                 <p>Total Earnings: <span>{ item.itemTotalEarnings ? '₱ ' + cashComma(item.itemTotalEarnings) : '- -' }</span></p>
                 <div className="all_earnings">
-                    <h3>All Items Earnings: ₱ {
-                        cashComma(
-                            totalEarnings.cake.itemTotalEarnings
-                            + totalEarnings.pizza.itemTotalEarnings
-                            + totalEarnings.iceCream.itemTotalEarnings
-                            + totalEarnings.burger.itemTotalEarnings
-                        )
-                    }</h3>
+                    <h3>All Items Earnings: 
+                        <span> ₱ {
+                            cashComma(
+                                totalEarnings.cake.itemTotalEarnings
+                                + totalEarnings.pizza.itemTotalEarnings
+                                + totalEarnings.iceCream.itemTotalEarnings
+                                + totalEarnings.burger.itemTotalEarnings
+                            )
+                        }</span>
+                    </h3>
                 </div>
             </div>
             <button onClick={() => handleReset(getResetButton(itemName), itemName)} className="reset">Reset { itemName }</button>
