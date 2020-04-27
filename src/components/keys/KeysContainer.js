@@ -5,6 +5,7 @@ import { buyCake } from '../../store/cake/cakeAction';
 import { buyPizza } from '../../store/pizza/pizzaAction';
 import { buyBurger } from '../../store/burger/burgerAction';
 import { buyIceCream } from '../../store/iceCream/iceCreamAction';
+import { Route, Switch } from 'react-router-dom';
 
 const KeysContainer = ({cake, pizza, iceCream, burger}) => {
     const [ number, setNumber ] = useState('');
@@ -91,22 +92,24 @@ const KeysContainer = ({cake, pizza, iceCream, burger}) => {
         quantityInput.current.value = ''
     }
 
+    const BuyButtonHome = () => <button onClick={(e) => handleSelect(e)} className="default_btn">Buy Item</button>
+    const BuyButtonCake = () => <button onClick={(e) => handleSubmit(buyCake, cake.itemQuantity, e)}>Buy {number} { number > 1 ? 'Cakes' : 'Cake' }</button>
+    const BuyButtonPizza = () => <button onClick={(e) => handleSubmit(buyPizza, pizza.itemQuantity, e)}>Buy {number} { number > 1 ? 'Pizzas' : 'Pizza' }</button>
+    const BuyButtonBurger = () => <button onClick={(e) => handleSubmit(buyBurger, burger.itemQuantity, e)}>Buy {number} { number > 1 ? 'Burgers' : 'Burger' }</button>
+    const BuyButtonIceCream = () => <button onClick={(e) => handleSubmit(buyIceCream, iceCream.itemQuantity, e)}>Buy {number} { number > 1 ? 'Ice Creams' : 'Ice Cream' }</button>
+
     return (
         <div className="keypad">
             <Keys getInputKey={getInputKey} deleteInputKey={deleteInputKey} resetInputKey={resetInputKey} />
             <form onSubmit={handleSubmit}>
                 <input type="number" ref={quantityInput} onChange={ e => setNumber(e.target.value) || getInputKey } placeholder="Enter quantity..." />
-                { menuButton.buyCakeButton ? (
-                    <button onClick={(e) => handleSubmit(buyCake, cake.itemQuantity, e)}>Buy {number} { number > 1 ? 'Cakes' : 'Cake' }</button>
-                ) : menuButton.buyPizzaButton ? (
-                    <button onClick={(e) => handleSubmit(buyPizza, pizza.itemQuantity, e)}>Buy {number} { number > 1 ? 'Pizzas' : 'Pizza' }</button>
-                ) : menuButton.buyBurgerButton ? (
-                    <button onClick={(e) => handleSubmit(buyBurger, burger.itemQuantity, e)}>Buy {number} { number > 1 ? 'Burgers' : 'Burger' }</button>
-                ) : menuButton.buyIceCreamButton ? (
-                    <button onClick={(e) => handleSubmit(buyIceCream, iceCream.itemQuantity, e)}>Buy {number} { number > 1 ? 'Ice Creams' : 'Ice Cream' }</button>
-                ) : (
-                    <button onClick={(e) => handleSelect(e)} className="default_btn">Buy Item</button>
-                )}
+                <Switch>
+                    <Route exact path="/" component={BuyButtonHome} />
+                    <Route path="/cake" component={BuyButtonCake} />
+                    <Route path="/pizza" component={BuyButtonPizza} />
+                    <Route path="/burger" component={BuyButtonBurger} />
+                    <Route path="/icecream" component={BuyButtonIceCream} />
+                </Switch>
                 <p className="errorText" id="errortext">
                     { numNull ? <span>Please input something!</span> : null }
                     { stock ? <span>Out of stock!</span> : null }
