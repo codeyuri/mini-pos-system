@@ -12,6 +12,17 @@ export const changeNumOfCakes = (num) => {
     }
 }
 
+export const addToCartCake = (num) => {
+    return {
+        type: 'ADD_TO_CART_CAKE',
+        payload: num
+    }
+}
+
 export const resetCake = {
     type: 'RESET_CAKE'
+}
+
+export const cancelCake = {
+    type: 'CANCEL_CAKE'
 }

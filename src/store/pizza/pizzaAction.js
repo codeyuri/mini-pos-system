@@ -12,6 +12,17 @@ export const changeNumOfPizza = (num) => {
     }
 }
 
+export const addToCartPizza = (num) => {
+    return {
+        type: 'ADD_TO_CART_PIZZA',
+        payload: num
+    }
+}
+
 export const resetPizza = {
     type: 'RESET_PIZZA'
+}
+
+export const cancelPizza = {
+    type: 'CANCEL_PIZZA'
 }

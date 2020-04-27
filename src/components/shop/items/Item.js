@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { resetCake } from '../../../store/cake/cakeAction';
 import { resetPizza } from '../../../store/pizza/pizzaAction';
@@ -34,16 +34,20 @@ const Item = ({item, itemName, initQuantity}) => {
     }
 
     const handleReset = (whatItem, item) => {
-        if (!confirm('Confirm to reset all ' + item + ' back to its default state')) return;
+        if (!confirm('Confirm to reset all ' + item + 's back to its default stock.\n\n')) return;
         dispatch(whatItem);
     }
+
+    // useEffect(() => {
+    //     item.totalSold + item.totalSold
+    // }, [])
     
     return (
         <>
             <div className="item_summary">
                 <h2>{ itemName }</h2>
                 <p>Number of { itemName }s left: <span>{ item.itemQuantity }/{ getInitQuantity(itemName) }</span></p>
-                <p>Number of {itemName}s Sold: <span>{ item.itemSold }</span></p>
+                <p>Number of {itemName}s Sold: <span>{ item.totalSold }</span></p>
                 <p>Price of 1 { itemName }: <span>₱ { item.itemPrice }</span></p>
                 <p>Total Earnings: <span>{ item.itemTotalEarnings ? '₱ ' + cashComma(item.itemTotalEarnings) : '- -' }</span></p>
                 <div className="all_earnings">

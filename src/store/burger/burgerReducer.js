@@ -2,7 +2,10 @@ const initState = {
     itemQuantity: 60,
     itemSold: 0,
     itemPrice: 28,
-    itemTotalEarnings: 0
+    itemTotalEarnings: 0,
+    currentEarning: 0,
+    isSold: false,
+    totalSold: 0
 }
 
 const burgerReducer = (state = initState, action) => {
@@ -13,7 +16,30 @@ const burgerReducer = (state = initState, action) => {
                 ...state,
                 itemQuantity: state.itemQuantity - action.payload,
                 itemSold,
-                itemTotalEarnings: state.itemPrice * itemSold
+                currentEarning: state.itemPrice * itemSold,
+                isSold: true
+            }
+        }
+        case 'CANCEL_BURGER': {
+            return {
+                ...state,
+                itemQuantity: state.itemQuantity + state.itemSold,
+                itemSold: 0,
+                currentEarning: 0,
+                isSold: false
+            }
+        }
+        case 'RESET_BURGER': return initState;
+        case 'ADD_TO_CART_BURGER': {
+            const totalSold = state.totalSold + state.itemSold
+            return {
+                ...state,
+                itemQuantity: action.payload,
+                itemSold: 0,
+                currentEarning: 0,
+                totalSold,
+                itemTotalEarnings: state.itemTotalEarnings + state.currentEarning,
+                isSold: false
             }
         }
         case 'CHANGE_NUM_OF_BURGER': {
@@ -22,7 +48,6 @@ const burgerReducer = (state = initState, action) => {
                 itemQuantity: action.payload
             }
         }
-        case 'RESET_BURGER': return initState
         default: return state
     }
 }

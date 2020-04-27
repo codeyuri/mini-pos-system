@@ -74,7 +74,7 @@ const KeysContainer = ({cake, pizza, iceCream, burger}) => {
         e.preventDefault()
         zeroInputFunc()
         setSelect(true)
-        setTimeout(() => { setSelect(false); }, 2000);
+        setTimeout(() => { setSelect(false); }, 3000);
     }
 
     const getInputKey = num => {
