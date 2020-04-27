@@ -21,8 +21,8 @@ const Customer = ({cake, pizza, iceCream, burger}) => {
 
     const addToCartFunc = () => {
         if (!confirm('Purchase selected items? Click "Cancel" to continue shopping.\n\n')) return;
-        if ( burger.isSold ) { dispatch(addToCartBurger(burger.itemQuantity)); var soldBurger = cashComma(burger.itemPrice * burger.itemSold); var nameBurger = 'Burger' }
-        if ( iceCream.isSold ) { dispatch(addToCartIceCream(iceCream.itemQuantity)); var soldBurger = cashComma(iceCream.itemPrice * iceCream.itemSold); var nameBurger = 'Ice Cream'  }
+        if ( burger.isSold ) { dispatch(addToCartBurger(burger.itemQuantity)); }
+        if ( iceCream.isSold ) { dispatch(addToCartIceCream(iceCream.itemQuantity)); }
         if ( cake.isSold ) { dispatch(addToCartCake(cake.itemQuantity)) }
         if ( pizza.isSold ) { dispatch(addToCartPizza(pizza.itemQuantity)) }
         setCash(getChange);
