@@ -7,3 +7,5 @@
 > Sample POS System for small shop owners.
 
 > Coded with ReactJS.
+
+> No copyright infringement intended for the logo, icons or images used.
