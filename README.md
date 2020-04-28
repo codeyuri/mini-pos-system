@@ -4,4 +4,6 @@
 
 > Dan Quesada III
 
-> Pop-up alerts are still in progress...
+> Sample POS System for small shop owners.
+
+> Coded with ReactJS.
