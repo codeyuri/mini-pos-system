@@ -1,78 +1,63 @@
 import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { resetCake, addStockCake, editCake } from '../../../store/cake/cakeAction';
-import { resetPizza, addStockPizza, editPizza } from '../../../store/pizza/pizzaAction';
-import { resetBurger, addStockBurger, editBurger } from '../../../store/burger/burgerAction';
-import { resetIceCream, addStockIceCream, editIceCream } from '../../../store/iceCream/iceCreamAction';
+import { useSelector } from 'react-redux';
+import PopupAddStock from '../../popup/PopupAddStock';
+import PopupEditStock from '../../popup/PopupEditStock';
+import PopupResetStock from '../../popup/PopupResetStock';
 
 const Item = ({item, itemName}) => {
+    // input error red border
     const [ error, setError ] = useState(false);
+
+    // popup errors
+    const [ addError, setAddError ] = useState(false);
+    const [ editError, setEditError ] = useState(false);
+    const [ errorZero, setErrorZero ] = useState(false);
+
+    // popup edit success msg
+    const [ editSuccess, setEditSuccess ] = useState(false);
+
+    // popups
+    const [ popupAdd, setPopupAdd ] = useState(false);
+    const [ popupEdit, setPopupEdit ] = useState(false);
+    const [ popupReset, setPopupReset ] = useState(false);
+
+    // own states
     const [ number, setNumber ] = useState('');
     const totalEarnings = useSelector(state => state)
-    const dispatch = useDispatch();
-
-    const getResetButton = theitem => {
-        switch(theitem) {
-            case 'Cake': return resetCake
-            case 'Pizza': return resetPizza
-            case 'Burger': return resetBurger
-            case 'Ice Cream': return resetIceCream
-            default: null
-        }
-    }
-
-    const getAddStockButton = theitem => {
-        switch(theitem) {
-            case 'Cake': return addStockCake
-            case 'Pizza': return addStockPizza
-            case 'Burger': return addStockBurger
-            case 'Ice Cream': return addStockIceCream
-            default: null
-        }
-    }
-
-    const getEditButton = theitem => {
-        switch(theitem) {
-            case 'Cake': return editCake
-            case 'Pizza': return editPizza
-            case 'Burger': return editBurger
-            case 'Ice Cream': return editIceCream
-            default: null
-        }
-    }
 
     const cashComma = num => {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
 
-    const handleAddStock = (whatItem, item, num) => {
-        if ( num <= 0 ) { setError(true); alert('Please input a number greater than 0!\n\n'); return }
-        if ( num > 0 ) { setError(false) }
-        if (!confirm('Proceed adding ' + num + ' ' + item + '(s) to our stock?\n\n')) return;
-        dispatch(whatItem(num));
-        setNumber('')
-    }
-
-    const handleReset = (whatItem, item) => {
+    const handleReset = () => {
         setError(false)
-        var promptmsg = prompt(
-            'Reset all ' + item + 
-            's\nback to its default stock\nincluding total ' + item + 
-            ' earnings.\n\nInput ' + item.toUpperCase() + ' to proceed.\n\n' );
-        // if (!promptmsg) { return }
-        if (!promptmsg) { alert('Please input reset code.\n\n'); return }
-        else if (promptmsg !== item.toUpperCase()) { alert('Invalid reset code.\n\n'); return }
-        else { dispatch(whatItem); alert('All ' + item + '(s) reverted to its default stock.\n\n') }
+        setPopupReset(true)
     }
 
-    const handleEdit = (whatItem, item, itemname, num) => {
-        if ( num <= 0 ) { setError(true); alert('Please input a number greater than 0!\n\n'); return }
-        if ( num > 0 ) { setError(false) }
-        if ( num < item.totalSold + 1 || num < item.itemSold + 1 ) { alert('Please input quantitiy higher than sold items!'); return }
-        if (!confirm('Changed ' + itemname + '(s) quantity to ' + num + '?\n\n')) return;
-        dispatch(whatItem(num));
-        setNumber('')
+    const handleEdit = () => {
+        if ( number <= 0 ) { setError(true); setErrorZero(true); }
+        else { setError(false); setErrorZero(false); }
+        if ( number < item.totalSold + 1 || number < item.itemSold + 1 ) { setError(true); setEditError(true); }
+        else { setError(false); setEditError(false); }
+        setPopupEdit(true)
+        setEditSuccess(true)
     }
+
+    const handleAddStock = () => {
+        if ( number <= 0 ) { setAddError(true); setError(true); }
+        else { setAddError(false); setError(false)}
+        setPopupAdd(true)
+    }
+
+    const pressClose = () => {
+        setPopupAdd(false)
+        setNumber('')
+        setError(false);
+        setPopupEdit(false)
+        setPopupReset(false)
+    }
+
+    const allEarnings = totalEarnings.cake.itemTotalEarnings + totalEarnings.pizza.itemTotalEarnings + totalEarnings.iceCream.itemTotalEarnings + totalEarnings.burger.itemTotalEarnings;
     
     return (
         <>
@@ -83,42 +68,36 @@ const Item = ({item, itemName}) => {
                 <p>Price of 1 { itemName }: <span>₱ { item.itemPrice }</span></p>
                 <p>Total Earnings: <span>{ item.itemTotalEarnings ? '₱ ' + cashComma(item.itemTotalEarnings) : '- -' }</span></p>
                 <div className="all_earnings">
-                    <h3>All Items Earnings: 
-                        <span> ₱ {
-                            cashComma(
-                                totalEarnings.cake.itemTotalEarnings
-                                + totalEarnings.pizza.itemTotalEarnings
-                                + totalEarnings.iceCream.itemTotalEarnings
-                                + totalEarnings.burger.itemTotalEarnings
-                            )
-                        }</span>
-                    </h3>
+                    <h3>All Items Earnings: <span> ₱ { cashComma(allEarnings ) }</span> </h3>
                 </div>
             </div>
             <div className="stock_btns">
                 <input 
                     type="number" 
-                    placeholder={'Add ' + itemName + 's' } 
+                    placeholder={'Stocks only: Modify ' + itemName + 's' } 
                     onChange={e => setNumber(e.target.value)} 
                     className={ error ? 'active' : null }
                     value={number}
                 />
                 <button 
-                    onClick={() => handleAddStock(getAddStockButton(itemName), itemName, number)} 
+                    onClick={handleAddStock} 
                     className="add">Add { number + ' ' + itemName } 
                     { number > 1 ? 's' : null }
                 </button>
                 <div className="stock_btns_bot">
                     <button 
-                            onClick={() => handleEdit(getEditButton(itemName), item, itemName, number)} 
+                            onClick={handleEdit} 
                             className="edit">Edit Quantity
                     </button>
                     <button 
-                        onClick={() => handleReset(getResetButton(itemName), itemName)} 
+                        onClick={handleReset} 
                         className="reset">Reset { itemName }
                     </button>
                 </div>
             </div>
+            { popupAdd ? ( <PopupAddStock itemName={itemName} number={number} setError={setError} addError={addError} setAddError={setAddError} pressClose={pressClose} /> ) : null }
+            { popupEdit ? ( <PopupEditStock itemName={itemName} number={number} editSuccess={editSuccess} setEditSuccess={setEditSuccess} setError={setError} setNumber={setNumber} editError={editError} setEditError={setEditError} errorZero={errorZero} setErrorZero={setErrorZero} pressClose={pressClose} /> ) : null }
+            { popupReset ? ( <PopupResetStock item={item} itemName={itemName} pressClose={pressClose} /> ) : null }
         </>
     )
 }

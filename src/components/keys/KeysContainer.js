@@ -15,7 +15,6 @@ const KeysContainer = ({cake, pizza, iceCream, burger}) => {
     const [ select, setSelect ] = useState(false);
     const quantityInput = useRef();
     const dispatch = useDispatch();
-    const menuButton = useSelector(state => state.menu);
 
     const noinputFunc = () => {
         setNumNull(true)
@@ -92,11 +91,11 @@ const KeysContainer = ({cake, pizza, iceCream, burger}) => {
         quantityInput.current.value = ''
     }
 
-    const BuyButtonHome = () => <button onClick={(e) => handleSelect(e)} className="default_btn">Buy Item</button>
-    const BuyButtonCake = () => <button onClick={(e) => handleSubmit(buyCake, cake.itemQuantity, e)}>Buy {number} { number > 1 ? 'Cakes' : 'Cake' }</button>
-    const BuyButtonPizza = () => <button onClick={(e) => handleSubmit(buyPizza, pizza.itemQuantity, e)}>Buy {number} { number > 1 ? 'Pizzas' : 'Pizza' }</button>
-    const BuyButtonBurger = () => <button onClick={(e) => handleSubmit(buyBurger, burger.itemQuantity, e)}>Buy {number} { number > 1 ? 'Burgers' : 'Burger' }</button>
-    const BuyButtonIceCream = () => <button onClick={(e) => handleSubmit(buyIceCream, iceCream.itemQuantity, e)}>Buy {number} { number > 1 ? 'Ice Creams' : 'Ice Cream' }</button>
+    const BuyButtonHome = () => <button onClick={(e) => handleSelect(e)} className="default_btn">Add to cart</button>
+    const BuyButtonCake = () => <button onClick={(e) => handleSubmit(buyCake, cake.itemQuantity, e)}>Add {number} { number > 1 ? 'Cakes' : 'Cake' } to cart</button>
+    const BuyButtonPizza = () => <button onClick={(e) => handleSubmit(buyPizza, pizza.itemQuantity, e)}>Add {number} { number > 1 ? 'Pizzas' : 'Pizza' } to cart</button>
+    const BuyButtonBurger = () => <button onClick={(e) => handleSubmit(buyBurger, burger.itemQuantity, e)}>Add {number} { number > 1 ? 'Burgers' : 'Burger' } to cart</button>
+    const BuyButtonIceCream = () => <button onClick={(e) => handleSubmit(buyIceCream, iceCream.itemQuantity, e)}>Add {number} { number > 1 ? 'Ice Creams' : 'Ice Cream' } to cart</button>
 
     return (
         <div className="keypad">

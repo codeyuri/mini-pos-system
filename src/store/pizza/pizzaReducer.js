@@ -1,4 +1,5 @@
 const initState = {
+    default: 45,
     initQuantity: 45,
     itemQuantity: 45,
     itemSold: 0,

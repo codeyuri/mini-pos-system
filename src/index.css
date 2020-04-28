@@ -62,7 +62,7 @@ q { quotes: none }
 .menu ul li { width: 49%; text-align: center; background: rgba(255,255,255,0.3); margin: 4px 0; min-height: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 3px 13px rgba(3, 135, 131, 0.3); }
 .menu ul li:hover { background: #58d2ba; -webkit-transition: all .3s linear; transition: all .3s linear; cursor: pointer; }
 .menu ul li a.active { background: linear-gradient(to top, #0aa, #1abc9c); -webkit-transition: all .3s linear; transition: all .3s linear; cursor: pointer }
-.menu ul li a { color: #fff; padding: 15px 50px; display: block; width: 100%; height: 100%; }
+.menu ul li a { color: #fff; padding: 15px 40px; display: block; width: 100%; height: 100%; }
 .menu ul li h3 { padding-bottom: 3px; margin-bottom: 3px; border-bottom: 1px solid #fff; }
 .menu ul li h3 span { float: right; }
 .menu ul li h3::before { content: ''; background: url('./assets/images/burger.png') no-repeat center center/contain; height: 60px; display: block; position: relative; top: 0; }
@@ -88,6 +88,21 @@ q { quotes: none }
 footer { margin-top: 15px }
 footer p { text-align: center; font-size: 14px; }
 
+/* popup */
+.popup { display: flex; justify-content: center; align-items: center; position: fixed; width: 100%; height: 100%; background: rgba(0,0,0,0.5); top: 0; right: 0; left: 0; bottom: 0; z-index: 5; }
+.popup_con { width: 400px; max-width: 95%; background: #fff; padding: 40px; color: teal; border-radius: 0 20px 0 15px; position: relative; }
+.popup_body h3 { border-bottom: 1px solid #ccc; padding-bottom: 10px; margin-bottom: 10px; }
+.popup_body p { color: #444; display: flex; justify-content: space-between; }
+.popup_body p.total { font-weight: bold; }
+.popup_body p.change span.active { color: red; letter-spacing: 2px; font-weight: bold; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.popup_body p.change, .popup_body p.cash { border-top: 1px solid #ccc; padding-top: 10px; margin-top: 10px; }
+.popup_close { position: absolute; top: 0; right: 0; background: teal; color: #fff; border-radius: 0 15px 0 15px; width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; cursor: pointer; padding-bottom: 5px; font-size: 19px; }
+.popup_close:hover { background: #333; background: #444; padding-bottom: 5px; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.popup_btns { margin-top: 30px; display: flex; align-items: center; justify-content: flex-end; }
+.popup_btns button { border: 0; background: teal; color: #fff; padding: 10px 15px; margin-left: 5px; }
+.popup_btns button:hover { background: #444; cursor: pointer; -webkit-transition: all .3s linear; transition: all .3s linear; }
+.popup_body input { width: 100%; border: 1px solid #ccc; border-radius: 5px; margin-top: 15px; padding: 10px; color: #444; }
+  
 /* loader */
 .loader_div { position: fixed; top: 0; bottom: 0; right: 0; left: 0; z-index: 999; background: #1f1f1f; display: -webkit-box; display: -ms-flexbox; display: flex; -webkit-box-pack: center; -ms-flex-pack: center; justify-content: center; -webkit-box-align: center; -ms-flex-align: center; align-items: center; overflow: hidden; -webkit-transition: all 1.7s linear; transition: all 1.7s linear; }
 .loader_con { width: 200px; height: 200px; display: inline-block; overflow: hidden; background: #1f1f1f; }
@@ -106,9 +121,12 @@ footer p { text-align: center; font-size: 14px; }
     .keypad table td { padding: 10px; }
     .bot_right .item_summary h3 { flex-direction: column; }
     .bot_right .item_summary h3 span { padding-left: 0; }
+    .bot_right, .keypad { width: 38%; }
+  
 }
 @media only screen and (max-width: 700px) {
     .errorText { font-size: 13px; }
+    .stock_btns_bot button { font-size: 1.7vw; }
 }
 @media only screen and (max-width: 600px) {
     #app { height: auto; padding-bottom: 15px;}
@@ -124,5 +142,6 @@ footer p { text-align: center; font-size: 14px; }
     .bot_right .item_summary h3 { flex-direction: row; }
     .bot_right .item_summary h3 span { padding-left: 15px; }
     .stock_btns { margin-top: 10px; }
+    .stock_btns_bot button { font-size: 13px; }
     footer { margin-top: 0; padding: 15px 10px }
 }

@@ -1,16 +1,12 @@
 import React, { useState } from 'react';
 import CustomerItem from './CustomerItem';
 import cart from '../../assets/images/cart.gif';
-import { useDispatch } from 'react-redux';
-import { addToCartBurger } from '../../store/burger/burgerAction';
-import { addToCartPizza } from '../../store/pizza/pizzaAction';
-import { addToCartCake } from '../../store/cake/cakeAction';
-import { addToCartIceCream } from '../../store/iceCream/iceCreamAction';
+import PopupPurchase from '../popup/PopupPurchase';
 
 const Customer = ({cake, pizza, iceCream, burger}) => {
     const [ cash, setCash ] = useState(1350);
-    const dispatch = useDispatch();
-
+    const [ popup, setPopup ] = useState(false);
+    
     const itemsSold = cake.isSold || pizza.isSold || burger.isSold || iceCream.isSold;
     const addEarnings = cake.currentEarning + pizza.currentEarning + burger.currentEarning + iceCream.currentEarning;
     const getChange = cash - addEarnings;
@@ -20,23 +16,11 @@ const Customer = ({cake, pizza, iceCream, burger}) => {
     }
 
     const addToCartFunc = () => {
-        if (!confirm('Purchase selected items? Click "Cancel" to continue shopping.\n\n')) return;
-        if ( burger.isSold ) { dispatch(addToCartBurger(burger.itemQuantity)); }
-        if ( iceCream.isSold ) { dispatch(addToCartIceCream(iceCream.itemQuantity)); }
-        if ( cake.isSold ) { dispatch(addToCartCake(cake.itemQuantity)) }
-        if ( pizza.isSold ) { dispatch(addToCartPizza(pizza.itemQuantity)) }
-        setCash(getChange);
-        alert(
-            'Thank you for shopping! \n\n' +
-            'Cash: \t\t\t\t₱' + 
-            cashComma(cash) + 
-            '\nTotal Charge: \t\t₱' + 
-            cashComma(addEarnings) + 
-            '\n----------------------------------------' +
-            '\nChange: \t\t\t₱' + 
-            cashComma(getChange) + 
-            '\n\n\n'
-        );
+        setPopup(true)
+    }
+
+    const pressClose = () => {
+        setPopup(false)
     }
 
     return (
@@ -61,6 +45,19 @@ const Customer = ({cake, pizza, iceCream, burger}) => {
                     </figure>
                 ) }
             </div>
+            { popup ? (
+                <PopupPurchase 
+                    cake={cake}
+                    burger={burger}
+                    pizza={pizza}
+                    iceCream={iceCream}
+                    cash={cash} 
+                    setCash={setCash} 
+                    getChange={getChange} 
+                    addEarnings={addEarnings} 
+                    pressClose={pressClose}
+                />
+            ) : null }
         </div>
     )
 }
