@@ -44,7 +44,7 @@ const Customer = ({cake, pizza, iceCream, burger}) => {
             <p>Customer's Cash: { cash ? '₱ ' + cashComma(cash) : '' }</p>
             <input type="number" onChange={ e => setCash(e.target.value) } placeholder="Change customer's current cash." />
             <div className="customer_cart">
-                <h2>Customer's Cart { itemsSold ? <span onClick={addToCartFunc} className="add_to_cart">Add to Cart</span> : null }</h2>
+                <h2>Customer's Cart { itemsSold ? <span onClick={addToCartFunc} className="add_to_cart">Purchase</span> : null }</h2>
                 { burger.isSold ? <CustomerItem itemName={'Burger'} item={burger} /> : null }
                 { cake.isSold ? <CustomerItem itemName={'Cake'} item={cake} /> : null }
                 { iceCream.isSold ? <CustomerItem itemName={'Ice Cream'} item={iceCream} /> : null }

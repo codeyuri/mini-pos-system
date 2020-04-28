@@ -19,6 +19,20 @@ export const addToCartBurger = (num) => {
     }
 }
 
+export const addStockBurger = (num) => {
+    return {
+        type: 'ADD_STOCK_BURGER',
+        payload: num
+    }
+}
+
+export const editBurger = (num) => {
+    return {
+        type: 'EDIT_BURGER',
+        payload: num
+    }
+}
+
 export const resetBurger = {
     type: 'RESET_BURGER'
 }

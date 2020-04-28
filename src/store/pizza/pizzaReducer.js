@@ -1,4 +1,5 @@
 const initState = {
+    initQuantity: 45,
     itemQuantity: 45,
     itemSold: 0,
     itemPrice: 13,
@@ -42,10 +43,18 @@ const pizzaReducer = (state = initState, action) => {
                 isSold: false
             }
         }
-        case 'CHANGE_NUM_OF_PIZZA': {
+        case 'ADD_STOCK_PIZZA': {
             return {
                 ...state,
-                itemQuantity: action.payload
+                itemQuantity: state.itemQuantity + Number(action.payload),
+                initQuantity: state.initQuantity + Number(action.payload)
+            }
+        }
+        case 'EDIT_PIZZA': {
+            return {
+                ...state,
+                initQuantity: Number(action.payload),
+                itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
             }
         }
         default: return state

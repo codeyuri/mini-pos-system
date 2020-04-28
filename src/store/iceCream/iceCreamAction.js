@@ -19,6 +19,20 @@ export const addToCartIceCream = (num) => {
     }
 }
 
+export const addStockIceCream = (num) => {
+    return {
+        type: 'ADD_STOCK_ICECREAM',
+        payload: num
+    }
+}
+
+export const editIceCream = (num) => {
+    return {
+        type: 'EDIT_ICECREAM',
+        payload: num
+    }
+}
+
 export const resetIceCream = {
     type: 'RESET_ICECREAM'
 }

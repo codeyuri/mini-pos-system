@@ -1,4 +1,5 @@
 const initState = {
+    initQuantity: 60,
     itemQuantity: 60,
     itemSold: 0,
     itemPrice: 28,
@@ -42,10 +43,18 @@ const burgerReducer = (state = initState, action) => {
                 isSold: false
             }
         }
-        case 'CHANGE_NUM_OF_BURGER': {
+        case 'ADD_STOCK_BURGER': {
             return {
                 ...state,
-                itemQuantity: action.payload
+                itemQuantity: state.itemQuantity + Number(action.payload),
+                initQuantity: state.initQuantity + Number(action.payload)
+            }
+        }
+        case 'EDIT_BURGER': {
+            return {
+                ...state,
+                initQuantity: Number(action.payload),
+                itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
             }
         }
         default: return state

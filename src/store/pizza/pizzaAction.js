@@ -19,6 +19,20 @@ export const addToCartPizza = (num) => {
     }
 }
 
+export const addStockPizza = (num) => {
+    return {
+        type: 'ADD_STOCK_PIZZA',
+        payload: num
+    }
+}
+
+export const editPizza = (num) => {
+    return {
+        type: 'EDIT_PIZZA',
+        payload: num
+    }
+}
+
 export const resetPizza = {
     type: 'RESET_PIZZA'
 }

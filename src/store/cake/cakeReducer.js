@@ -1,4 +1,5 @@
 const initState = {
+    initQuantity: 20,
     itemQuantity: 20,
     itemSold: 0,
     itemPrice: 10,
@@ -42,10 +43,18 @@ const cakeReducer = (state = initState, action) => {
                 isSold: false
             }
         }
-        case 'CHANGE_NUM_OF_CAKE': {
+        case 'ADD_STOCK_CAKE': {
             return {
                 ...state,
-                itemQuantity: action.payload
+                itemQuantity: state.itemQuantity + Number(action.payload),
+                initQuantity: state.initQuantity + Number(action.payload)
+            }
+        }
+        case 'EDIT_CAKE': {
+            return {
+                ...state,
+                initQuantity: Number(action.payload),
+                itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
             }
         }
         default: return state

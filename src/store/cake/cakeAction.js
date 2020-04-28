@@ -19,6 +19,20 @@ export const addToCartCake = (num) => {
     }
 }
 
+export const addStockCake = (num) => {
+    return {
+        type: 'ADD_STOCK_CAKE',
+        payload: num
+    }
+}
+
+export const editCake = (num) => {
+    return {
+        type: 'EDIT_CAKE',
+        payload: num
+    }
+}
+
 export const resetCake = {
     type: 'RESET_CAKE'
 }

@@ -1,4 +1,5 @@
 const initState = {
+    initQuantity: 70,
     itemQuantity: 70,
     itemSold: 0,
     itemPrice: 29,
@@ -42,10 +43,18 @@ const iceCreamReducer = (state = initState, action) => {
                 isSold: false
             }
         }
-        case 'CHANGE_NUM_OF_ICECREAM': {
+        case 'ADD_STOCK_ICECREAM': {
             return {
                 ...state,
-                itemQuantity: action.payload
+                itemQuantity: state.itemQuantity + Number(action.payload),
+                initQuantity: state.initQuantity + Number(action.payload)
+            }
+        }
+        case 'EDIT_ICECREAM': {
+            return {
+                ...state,
+                initQuantity: Number(action.payload),
+                itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
             }
         }
         default: return state
