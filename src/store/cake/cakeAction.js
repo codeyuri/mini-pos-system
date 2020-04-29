@@ -33,6 +33,13 @@ export const editCake = (num) => {
     }
 }
 
+export const editPriceCake = (num) => {
+    return {
+        type: 'EDIT_PRICE_CAKE',
+        payload: num
+    }
+}
+
 export const resetCake = {
     type: 'RESET_CAKE'
 }

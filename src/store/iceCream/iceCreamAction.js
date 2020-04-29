@@ -33,6 +33,13 @@ export const editIceCream = (num) => {
     }
 }
 
+export const editPriceIceCream = (num) => {
+    return {
+        type: 'EDIT_PRICE_ICECREAM',
+        payload: num
+    }
+}
+
 export const resetIceCream = {
     type: 'RESET_ICECREAM'
 }

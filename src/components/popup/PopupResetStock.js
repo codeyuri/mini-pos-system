@@ -42,7 +42,8 @@ const PopupResetStock = ({item, itemName, pressClose}) => {
                     ) : isActive ? (
                         <>
                             <h3 style={{color: 'red'}}>Reset</h3>
-                            <p>Do you want to reset all { itemName }s to its default stock ({item.default})? Note: All { itemName } earnings will also be reset.</p>
+                            <p>Reset all { itemName }s to its default stock ({item.default})?</p>
+                            <p><em>Note: All { itemName } earnings will also be reset.</em></p>
                             <br/>
                             <p style={{ display: 'block' }}>Input <strong>{ itemName.toUpperCase() }</strong> in the box below to proceed.</p>
                             <input type="text" onChange={e => setCode(e.target.value)} value={code} />

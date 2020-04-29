@@ -49,7 +49,7 @@ const PopupEditStock = ({itemName, number, pressClose, setError, editError, erro
                         </>
                     ) : editSuccess ? (
                         <>
-                            <h3>Update</h3>
+                            <h3>Update Quantity</h3>
                             <p>Update total quantity of {number > 1 ? itemName + 's' : itemName} to {cashComma(number)}?</p>
                         </>
                     ) : (

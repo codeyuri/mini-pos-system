@@ -3,6 +3,7 @@ const initState = {
     initQuantity: 20,
     itemQuantity: 20,
     itemSold: 0,
+    initPrice: 10,
     itemPrice: 10,
     itemTotalEarnings: 0,
     currentEarning: 0,
@@ -56,6 +57,13 @@ const cakeReducer = (state = initState, action) => {
                 ...state,
                 initQuantity: Number(action.payload),
                 itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
+            }
+        }
+        case 'EDIT_PRICE_CAKE': {
+            return {
+                ...state,
+                itemPrice: Number(action.payload),
+                currentEarning: Number(action.payload) * state.itemSold
             }
         }
         default: return state

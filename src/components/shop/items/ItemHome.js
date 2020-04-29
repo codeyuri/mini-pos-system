@@ -8,8 +8,15 @@ const ItemHome = () => {
                 <li>Select item from the menu to:
                     <ul>
                         <li>View the selected item's summary</li>
-                        <li>Reset the selected item's stock</li>
                         <li>Buy a selected item</li>
+                    </ul>
+                </li>
+                <li>Login as administrator to:
+                    <ul>
+                        <li>Add stock of a selected item</li>
+                        <li>Edit stock of a selected item</li>
+                        <li>Reset the selected item's stock</li>
+                        <li>Reset the selected item's price</li>
                     </ul>
                 </li>
             </ul>

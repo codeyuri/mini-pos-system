@@ -3,6 +3,7 @@ const initState = {
     initQuantity: 60,
     itemQuantity: 60,
     itemSold: 0,
+    initPrice: 28,
     itemPrice: 28,
     itemTotalEarnings: 0,
     currentEarning: 0,
@@ -56,6 +57,13 @@ const burgerReducer = (state = initState, action) => {
                 ...state,
                 initQuantity: Number(action.payload),
                 itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
+            }
+        }
+        case 'EDIT_PRICE_BURGER': {
+            return {
+                ...state,
+                itemPrice: Number(action.payload),
+                currentEarning: Number(action.payload) * state.itemSold
             }
         }
         default: return state

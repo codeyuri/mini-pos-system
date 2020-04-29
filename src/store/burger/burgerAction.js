@@ -33,6 +33,13 @@ export const editBurger = (num) => {
     }
 }
 
+export const editPriceBurger = (num) => {
+    return {
+        type: 'EDIT_PRICE_BURGER',
+        payload: num
+    }
+}
+
 export const resetBurger = {
     type: 'RESET_BURGER'
 }

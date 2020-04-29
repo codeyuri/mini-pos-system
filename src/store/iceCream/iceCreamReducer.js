@@ -3,6 +3,7 @@ const initState = {
     initQuantity: 70,
     itemQuantity: 70,
     itemSold: 0,
+    initPrice: 29,
     itemPrice: 29,
     itemTotalEarnings: 0,
     currentEarning: 0,
@@ -56,6 +57,13 @@ const iceCreamReducer = (state = initState, action) => {
                 ...state,
                 initQuantity: Number(action.payload),
                 itemQuantity: Number(action.payload) - (state.totalSold + state.itemSold)
+            }
+        }
+        case 'EDIT_PRICE_ICECREAM': {
+            return {
+                ...state,
+                itemPrice: Number(action.payload),
+                currentEarning: Number(action.payload) * state.itemSold
             }
         }
         default: return state
