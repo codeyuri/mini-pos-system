@@ -1,6 +1,6 @@
 # Mini POS System
 
-<a href="https://codeyuri.github.io/pos/" target="_blank">https://codeyuri.github.io/pos/</a>
+<a href="https://codeyuri.github.io/portfolio/pos/" target="_blank">https://codeyuri.github.io/portfolio/pos/</a>
 
 > Dan Quesada III
 
